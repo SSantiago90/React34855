@@ -1,22 +1,11 @@
 import logo from "./logo.svg";
 import "./App.css";
+import Card from "./components/Card";
+import Button from "./components/Button/Button";
+import NavBar from "./components/NavBar/NavBar";
 
 function App() {
   const title = "¡¡¡Bienvenidos a React!!!!!!!";
-
-  const producto = {
-    precio: 500,
-    nombre: "Pantalón",
-    descripcion: "La remera de Coder",
-  };
-
-  const cardProduct = (
-    <div>
-      <h3>{producto.nombre}</h3>
-      <br />
-      <h3>$ {producto.precio}</h3>
-    </div>
-  );
 
   function hacerAlgo() {
     alert("Hola");
@@ -31,23 +20,31 @@ function App() {
 
   return (
     <div>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          {title}
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          ></a>
-          {cardProduct}
-        </header>
-      </div>
+      <NavBar />
       <div style={miEstilo} className="catalogo">
-        {cardProduct}
+        <Card
+          img="https://d2r9epyceweg5n.cloudfront.net/stores/001/205/102/products/remera-lisa-am-rj-111-3374707c83b41fb15515911954612335-1024-1024.jpg"
+          title="Remera"
+          price={500}
+          detail="Remera Coderhouse"
+        />
+        <Card
+          img="/imgs/pantalon.jpg"
+          title="Pantalon"
+          price={700}
+          detail="Pantalon Coderhouse"
+        />
+        <Card
+          img="https://d3ugyf2ht6aenh.cloudfront.net/stores/001/379/565/products/zapatilla-deportiva-de-mujer-atomik1-546c3ab029fe66e42f16517625338882-1024-1024.png"
+          title="Zapatillas"
+          price={800}
+          detail="Zapatillas Coderhouse"
+        />
       </div>
-      <button onClick={hacerAlgo}>Click me</button>
+
+      <button onClick={hacerAlgo}>Hacer Algo</button>
+
+      <Button color="black">Click</Button>
     </div>
   );
 }
