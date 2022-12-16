@@ -1,21 +1,22 @@
+import NavItem from "./NavItem";
+
 function NavBar() {
   return (
-    <nav>
-      <ul>
-        <li>
-          <a href="/">
-            <h4>Logo Mi Tienda</h4>
+    <nav className="navbar navbar-expand-lg bg-light">
+      <div className="container-fluid">
+        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <a className="navbar-brand" href="#">
+            <NavItem href="/"> LogoTienda </NavItem>
           </a>
-        </li>
-        <li>
-          <a href="/">Calzado</a>
-        </li>
-        <li>
-          <a href="/">Vestimenta</a>
-        </li>
-      </ul>
-      {/* <CartWidget></CartWidget> */}
-      <span>🛒</span>
+          {/* NavItem( {text: "Calzado"}) */}
+          <NavItem href="/calzado">Calzado</NavItem>
+          <NavItem href="/remeras">Remeras</NavItem>
+          <NavItem href="/otros">Otros</NavItem>
+        </ul>
+
+        {/* <CartWidget></CartWidget> */}
+        <span>🛒</span>
+      </div>
     </nav>
   );
 }
