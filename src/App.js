@@ -9,7 +9,6 @@ function App() {
       <NavBar />
       <ItemListContainer />
       <Ejemplos />
-      <button className="btn">Fuera del componente</button>
     </div>
   );
 }
