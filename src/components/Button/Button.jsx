@@ -1,15 +1,25 @@
-import "./button.css";
+import React from "react";
+import styles from "./button.module.css";
+
+// useEffect
 
 export default function Button(props) {
-  // { color: "orange", text: "Hola desde props"}
+  // React.useState() -> [ stateVar, setterStateVar ]
+  const [colorState, setColorState] = React.useState("orange");
 
-  const styleButton = {
+  let styleButton = {
     padding: props.padding,
-    backgroundColor: props.color,
+    backgroundColor: colorState,
   };
 
+  function handleClick(evt) {
+    console.log("Evento click");
+    //colorState = "red";
+    setColorState("red");
+  }
+
   return (
-    <button style={styleButton} className="btn">
+    <button onClick={handleClick} style={styleButton} className={styles.btn}>
       {props.children}
     </button>
   );

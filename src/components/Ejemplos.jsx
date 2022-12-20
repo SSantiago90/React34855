@@ -3,6 +3,7 @@ import Button from "./Button/Button";
 import Flex from "./Flex/Flex";
 
 import imgurl from "../imgs/zapa.png";
+import ItemCount from "./ItemCount/ItemCount";
 
 function Ejemplos() {
   const title = "¡¡¡Bienvenidos a React!!!!!!!";
@@ -40,6 +41,8 @@ function Ejemplos() {
           detail="Pantalon Coderhouse"
         />
       </Flex>
+
+      <ItemCount stock={2} />
 
       <button onClick={hacerAlgo}>Hacer Algo</button>
 
