@@ -1,20 +1,31 @@
 import { useState, useEffect } from "react";
 
+import Item from "./Item";
+import Flex from "../Flex/Flex";
+import obtenerProductos from "../../services/mockService";
+
 function ItemListContainer() {
-  const [test, setTest] = useState(0);
+  const [cities, setCities] = useState([]);
+
+  console.log("%cRenderizando ItemListContainer", "background-color: blue");
 
   useEffect(() => {
-    console.log("Conectando a la DB...");
+    obtenerProductos()
+      .then((respuesta) => {
+        setCities(respuesta);
+      })
+      .catch((error) => alert(error));
   }, []);
-  // dependency array
 
-  useEffect(() => {
-    console.log("Update del componente - no tiene sentido");
-  });
-
-  console.log("Me ejecuto siempre --->");
-
-  return <div onClick={() => setTest(test + 1)}>ItemListContainer</div>;
+  return (
+    <Flex>
+      {cities.map((itemIterado) => {
+        return (
+          <Item id={itemIterado.id} key={itemIterado.id} item={itemIterado} />
+        );
+      })}
+    </Flex>
+  );
 }
 
 export default ItemListContainer;

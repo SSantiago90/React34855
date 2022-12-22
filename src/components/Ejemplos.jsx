@@ -41,12 +41,6 @@ function Ejemplos() {
           detail="Pantalon Coderhouse"
         />
       </Flex>
-
-      <ItemCount stock={2} />
-
-      <button onClick={hacerAlgo}>Hacer Algo</button>
-
-      <Button color="black">Click</Button>
     </>
   );
 }
