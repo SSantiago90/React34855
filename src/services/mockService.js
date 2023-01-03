@@ -95,8 +95,18 @@ const obtenerProductos = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(database);
-    }, 3000);
+    }, 2000);
+  });
+};
+
+const getCity = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(database[8]);
+    }, 2000);
   });
 };
 
 export default obtenerProductos;
+
+export { getCity };
