@@ -1,93 +1,62 @@
 const database = [
   {
     id: 1,
-    title: "Podolí",
-    category: "Czech Republic",
-    stock: 7,
-    imgurl: "http://dummyimage.com/111x100.png/dddddd/000000",
-    detail: "CZ",
-    price: 2349.28,
-  },
-  {
-    id: 2,
-    title: "Faleula",
-    category: "Samoa",
-    stock: 7,
-    imgurl: "http://dummyimage.com/152x100.png/5fa2dd/ffffff",
-    detail: "WS",
-    price: 806.76,
-  },
-  {
-    id: 3,
     title: "Kurortnyy",
     category: "Russia",
     stock: 5,
-    imgurl: "http://dummyimage.com/199x100.png/dddddd/000000",
+    imgurl:
+      "https://cdn.britannica.com/32/152132-050-E3740EC3/Mud-bath-spa-Yessentuki-Russia.jpg",
     detail: "RU",
     price: 1556.01,
   },
   {
-    id: 4,
+    id: 2,
     title: "Stockholm",
     category: "Sweden",
     stock: 6,
-    imgurl: "http://dummyimage.com/215x100.png/cc0000/ffffff",
+    imgurl: "https://peakvisor.com/photo/SD/Stockholm-County-Sweden.jpg",
     detail: "SE",
     price: 1386.07,
   },
   {
-    id: 5,
+    id: 3,
     title: "Rublëvo",
     category: "Russia",
     stock: 3,
-    imgurl: "http://dummyimage.com/221x100.png/ff4444/ffffff",
+    imgurl:
+      "https://q-xx.bstatic.com/xdata/images/hotel/max1000/82232117.jpg?k=da13d50665a0a113e995cc361bd8f96e43f132d1d4760d65a50fcdee5a462e19",
     detail: "RU",
     price: 853.39,
   },
   {
-    id: 6,
+    id: 4,
     title: "Grazhdanka",
-    category: "Russia",
+    category: "Sweden",
     stock: 10,
-    imgurl: "http://dummyimage.com/222x100.png/dddddd/000000",
-    detail: "RU",
+    imgurl:
+      "https://www.planetware.com/wpimages/2020/02/sweden-in-pictures-beautiful-places-to-photograph.jpg",
+    detail: "SE",
     price: 586.08,
   },
   {
-    id: 7,
+    id: 5,
     title: "Néa Pélla",
     category: "Greece",
     stock: 2,
-    imgurl: "http://dummyimage.com/188x100.png/5fa2dd/ffffff",
+    imgurl:
+      "https://handluggageonly.co.uk/wp-content/uploads/2015/05/Hand-Luggage-Only-7.jpg",
     detail: "GR",
     price: 1660.25,
   },
   {
-    id: 8,
-    title: "Gaoling",
-    category: "China",
-    stock: 10,
-    imgurl: "http://dummyimage.com/223x100.png/ff4444/ffffff",
-    detail: "CN",
-    price: 3172.41,
-  },
-  {
-    id: 9,
+    id: 6,
     title: "Vicente Guerrero",
     category: "Mexico",
     stock: 7,
-    imgurl: "http://dummyimage.com/146x100.png/cc0000/ffffff",
+    imgurl:
+      "https://static01.nyt.com/images/2022/11/26/travel/15-36hours-mexicocity-1/15-36hours-mexicocity-1-mediumSquareAt3X-v3.jpg",
     detail: "MX",
     price: 2619.54,
-  },
-  {
-    id: 10,
-    title: "Suzaka",
-    category: "Japan",
-    stock: 10,
-    imgurl: "http://dummyimage.com/197x100.png/ff4444/ffffff",
-    detail: "JP",
-    price: 1364.2,
   },
 ];
 
@@ -99,14 +68,29 @@ const obtenerProductos = () => {
   });
 };
 
-const getCity = () => {
-  return new Promise((resolve) => {
+const getCity = (idURL) => {
+  return new Promise((resolve, reject) => {
+    const reqItem = database.find((item) => {
+      return item.id === parseInt(idURL);
+    });
+
     setTimeout(() => {
-      resolve(database[8]);
+      if (reqItem) resolve(reqItem);
+      else reject("No se encontró el producto");
+    }, 2000);
+  });
+};
+
+const getCityByCategory = (categoryURL) => {
+  return new Promise((resolve, reject) => {
+    let reqItems = database.filter((item) => item.category === categoryURL);
+
+    setTimeout(() => {
+      resolve(reqItems);
     }, 2000);
   });
 };
 
 export default obtenerProductos;
 
-export { getCity };
+export { getCity, getCityByCategory };

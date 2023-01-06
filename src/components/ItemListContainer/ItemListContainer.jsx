@@ -2,27 +2,36 @@ import { useState, useEffect } from "react";
 
 import Item from "./Item";
 import Flex from "../Flex/Flex";
-import obtenerProductos from "../../services/mockService";
+import obtenerProductos, {
+  getCityByCategory,
+} from "../../services/mockService";
+import { useParams } from "react-router-dom";
 
 function ItemListContainer() {
   const [cities, setCities] = useState([]);
+  let { categoryid } = useParams();
 
-  console.log("%cRenderizando ItemListContainer", "background-color: blue");
+  console.log("Renderizmos ILC");
 
   useEffect(() => {
-    obtenerProductos()
-      .then((respuesta) => {
+    if (!categoryid) {
+      obtenerProductos()
+        .then((respuesta) => {
+          setCities(respuesta);
+        })
+        .catch((error) => alert(error));
+    } else {
+      getCityByCategory(categoryid).then((respuesta) => {
         setCities(respuesta);
-      })
-      .catch((error) => alert(error));
-  }, []);
+      });
+    }
+  }, [categoryid]);
 
   return (
+    /* INCORPORAR <ITEMLIST/> */
     <Flex>
       {cities.map((itemIterado) => {
-        return (
-          <Item id={itemIterado.id} key={itemIterado.id} item={itemIterado} />
-        );
+        return <Item key={itemIterado.id} item={itemIterado} />;
       })}
     </Flex>
   );

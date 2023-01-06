@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import Button from "../Button/Button";
 import "./card.css";
 
 function Item(props) {
-  const { title, price, imgurl, category } = props.item;
+  const { title, price, imgurl, category, id } = props.item;
 
   return (
     <div className="item-card">
@@ -18,9 +19,11 @@ function Item(props) {
         <h3 className="item-card_price">$ {price}</h3>
         <small>{category}</small>
       </div>
-      <Button padding="22px" color="purple">
-        Ver más
-      </Button>
+      <Link to={`/detalle/${id}`}>
+        <Button padding="22px" color="purple">
+          Ver más
+        </Button>
+      </Link>
       <br></br>
     </div>
   );

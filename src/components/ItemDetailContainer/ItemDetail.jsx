@@ -1,19 +1,18 @@
 import React from "react";
-
+import ItemCount from "../ItemCount/ItemCount";
+import "./itemdetail.css";
 function ItemDetail({ title, imgurl, category, price }) {
   return (
-    <div className="item-card">
-      <div className="item-card_header">
-        <h2>{title}</h2>
-      </div>
-      <div className="item-card_img">
+    <div className="card-detail_main">
+      <div className="card-detail_img">
         <img src={imgurl} alt={title} />
       </div>
-      <div className="item-card_detail">
-        <h3 className="item-card_price">$ {price}</h3>
-        <small>{category}</small>
+      <div className="card-detail_detail">
+        <h1>{title}</h1>
+        <h4 className="priceTag">$ {price}</h4>
+        <p>{category}</p>
       </div>
-      <br></br>
+      <ItemCount />
     </div>
   );
 }

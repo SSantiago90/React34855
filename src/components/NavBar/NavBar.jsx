@@ -1,27 +1,18 @@
 import NavItem from "./NavItem";
 import "./navbar.css";
+import { Link } from "react-router-dom";
 
 function NavBar() {
-  const links = [
-    { title: "Remeras", url: "/remeras" },
-    { title: "Otros", url: "/assdasda" },
-  ];
-
   return (
     <nav>
       <ul className="nav-menu">
-        <NavItem href="/"> LogoTienda </NavItem>
-
-        {links.map((elemento) => {
-          console.log(elemento);
-          return (
-            <NavItem key={elemento.title} href={elemento.url}>
-              {elemento.title}
-            </NavItem>
-          );
-        })}
-
-        <span>🛒</span>
+        <NavItem to="/"> LogoTienda </NavItem>
+        <Link to="/category/Russia">Rusia</Link>
+        <Link to="/category/Sweden">Suecia</Link>
+        <Link to="/category/Greece">Grecia</Link>
+        <Link to="/cart">
+          <span>🛒</span>
+        </Link>
       </ul>
     </nav>
   );

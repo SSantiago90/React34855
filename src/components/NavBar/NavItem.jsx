@@ -1,11 +1,13 @@
-const NavItem = ({ href, children }) => {
+import { Link } from "react-router-dom";
+
+const NavItem = ({ to, children }) => {
   // text = {text: "Calzado"}
 
   return (
     <li className="nav-item">
-      <a className="nav-link" href={href}>
+      <Link className="nav-link" to={to}>
         {children}
-      </a>
+      </Link>
     </li>
   );
 };
