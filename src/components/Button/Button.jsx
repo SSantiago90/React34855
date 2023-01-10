@@ -12,14 +12,8 @@ export default function Button(props) {
     backgroundColor: colorState,
   };
 
-  function handleClick(evt) {
-    console.log("Evento click");
-    //colorState = "red";
-    setColorState("red");
-  }
-
   return (
-    <button onClick={handleClick} style={styleButton} className={styles.btn}>
+    <button onClick={props.onClick} style={styleButton} className={styles.btn}>
       {props.children}
     </button>
   );

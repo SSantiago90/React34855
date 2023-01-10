@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import ItemCount from "../ItemCount/ItemCount";
 import "./itemdetail.css";
-function ItemDetail({ title, imgurl, category, price }) {
+import Button from "../Button/Button";
+
+function ItemDetail({ title, imgurl, category, price, onAddToCart }) {
   return (
     <div className="card-detail_main">
       <div className="card-detail_img">
@@ -12,7 +14,10 @@ function ItemDetail({ title, imgurl, category, price }) {
         <h4 className="priceTag">$ {price}</h4>
         <p>{category}</p>
       </div>
-      <ItemCount />
+      <ItemCount onAddToCart={onAddToCart} />
+      <a href="/cart">
+        <Button>Ir al cart</Button>
+      </a>
     </div>
   );
 }

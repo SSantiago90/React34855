@@ -8,6 +8,12 @@ function ItemDetailContainer() {
 
   let params = useParams();
 
+  function handleAddToCart(count) {
+    console.log(
+      `Agregaste al carrito ${count} unidades del producto ${city.title}`
+    );
+  }
+
   useEffect(() => {
     getCity(params.itemid)
       .then((respuesta) => {
@@ -18,6 +24,7 @@ function ItemDetailContainer() {
 
   return (
     <ItemDetail
+      onAddToCart={handleAddToCart}
       title={city.title}
       imgurl={city.imgurl}
       category={city.category}

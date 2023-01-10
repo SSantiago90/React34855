@@ -7,16 +7,23 @@ import HomePage from "./pages/HomePage";
 import PageNotFound from "./pages/PageNotFound";
 
 function App() {
+  function logOutSession() {
+    console.log("logout");
+  }
+
+  function logInSession(username) {
+    alert(`Bienvenido el usuario: ${username}`);
+  }
+
   return (
     <>
       <BrowserRouter>
-        <NavBar />
+        <NavBar onLogin={logInSession} onLogout={logOutSession} />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/category/:categoryid" element={<ItemListContainer />} />
-          
+
           <Route path="/detalle/:itemid" element={<ItemDetailContainer />} />
-          
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>
