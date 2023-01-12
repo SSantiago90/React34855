@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar/NavBar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import PageNotFound from "./pages/PageNotFound";
+import { CartProvider } from "./storage/cartContext";
 
 function App() {
   function logOutSession() {
@@ -18,15 +19,18 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <NavBar onLogin={logInSession} onLogout={logOutSession} />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/category/:categoryid" element={<ItemListContainer />} />
-
-          <Route path="/detalle/:itemid" element={<ItemDetailContainer />} />
-
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
+        <CartProvider>
+          <NavBar onLogin={logInSession} onLogout={logOutSession} />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/category/:categoryid"
+              element={<ItemListContainer />}
+            />
+            <Route path="/detalle/:itemid" element={<ItemDetailContainer />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </CartProvider>
       </BrowserRouter>
     </>
   );

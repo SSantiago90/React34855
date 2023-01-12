@@ -1,9 +1,16 @@
+import { useContext } from "react";
+
 import NavItem from "./NavItem";
 import "./navbar.css";
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
+import { cartContext } from "../../storage/cartContext";
+import CartWidget from "./CartWidget";
 
 function NavBar(props) {
+  const context = useContext(cartContext);
+  context.test();
+
   function handleSubmit(evt) {
     evt.preventDefault();
     let user = evt.target.elements[0].value;
@@ -19,7 +26,7 @@ function NavBar(props) {
         <Link to="/category/Sweden">Suecia</Link>
         <Link to="/category/Greece">Grecia</Link>
         <Link to="/cart">
-          <span>🛒</span>
+          <CartWidget />
         </Link>
 
         <Button onClick={props.onLogout}>Log Out</Button>

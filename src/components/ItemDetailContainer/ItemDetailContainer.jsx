@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { getCity } from "../../services/mockService";
+import { cartContext } from "../../storage/cartContext";
 import ItemDetail from "./ItemDetail";
 
 function ItemDetailContainer() {
   const [city, setCity] = useState({ title: "loading", price: "--,--" });
 
   let params = useParams();
+  const { addToCart } = useContext(cartContext);
 
   function handleAddToCart(count) {
-    console.log(
-      `Agregaste al carrito ${count} unidades del producto ${city.title}`
-    );
+    const cityAndCount = { ...city, count: count };
+    addToCart(cityAndCount);
   }
 
   useEffect(() => {
