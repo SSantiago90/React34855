@@ -5,7 +5,7 @@ import styles from "./button.module.css";
 
 export default function Button(props) {
   // React.useState() -> [ stateVar, setterStateVar ]
-  const [colorState, setColorState] = React.useState("orange");
+  const [colorState, setColorState] = React.useState(props.color);
 
   let styleButton = {
     padding: props.padding,

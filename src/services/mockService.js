@@ -3,11 +3,12 @@ const database = [
     id: 1,
     title: "Kurortnyy",
     category: "Russia",
-    stock: 5,
+    stock: 2,
     imgurl:
       "https://cdn.britannica.com/32/152132-050-E3740EC3/Mud-bath-spa-Yessentuki-Russia.jpg",
     detail: "RU",
     price: 1556.01,
+    discount: 25,
   },
   {
     id: 2,
@@ -37,6 +38,7 @@ const database = [
       "https://www.planetware.com/wpimages/2020/02/sweden-in-pictures-beautiful-places-to-photograph.jpg",
     detail: "SE",
     price: 586.08,
+    discount: 35,
   },
   {
     id: 5,
@@ -61,8 +63,9 @@ const database = [
 ];
 
 const obtenerProductos = () => {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
+      /* reject("no hay items"); */
       resolve(database);
     }, 2000);
   });

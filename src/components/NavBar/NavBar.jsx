@@ -4,13 +4,9 @@ import NavItem from "./NavItem";
 import "./navbar.css";
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
-import { cartContext } from "../../storage/cartContext";
 import CartWidget from "./CartWidget";
 
 function NavBar(props) {
-  const context = useContext(cartContext);
-  context.test();
-
   function handleSubmit(evt) {
     evt.preventDefault();
     let user = evt.target.elements[0].value;
@@ -22,19 +18,23 @@ function NavBar(props) {
     <nav>
       <ul className="nav-menu">
         <NavItem to="/"> LogoTienda </NavItem>
-        <Link to="/category/Russia">Rusia</Link>
-        <Link to="/category/Sweden">Suecia</Link>
-        <Link to="/category/Greece">Grecia</Link>
-        <Link to="/cart">
-          <CartWidget />
+        <Link className="nav-bar_link" to="/category/Russia">
+          Rusia
         </Link>
-
-        <Button onClick={props.onLogout}>Log Out</Button>
-
+        <Link className="nav-bar_link" to="/category/Sweden">
+          Suecia
+        </Link>
+        <Link className="nav-bar_link" to="/category/Greece">
+          Grecia
+        </Link>
         <form onSubmit={handleSubmit}>
           Iniciar sesión
           <input name="user"></input>
+          <Button onClick={props.onLogout}>Log Out</Button>
         </form>
+        <Link to="/cart">
+          <CartWidget />
+        </Link>
       </ul>
     </nav>
   );

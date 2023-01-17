@@ -6,11 +6,13 @@ import ItemDetail from "./ItemDetail";
 
 function ItemDetailContainer() {
   const [city, setCity] = useState({ title: "loading", price: "--,--" });
+  const [isInCart, setIsInCart] = useState(false);
 
   let params = useParams();
   const { addToCart } = useContext(cartContext);
 
   function handleAddToCart(count) {
+    setIsInCart(true);
     const cityAndCount = { ...city, count: count };
     addToCart(cityAndCount);
   }
@@ -25,6 +27,7 @@ function ItemDetailContainer() {
 
   return (
     <ItemDetail
+      isInCart={isInCart}
       onAddToCart={handleAddToCart}
       title={city.title}
       imgurl={city.imgurl}

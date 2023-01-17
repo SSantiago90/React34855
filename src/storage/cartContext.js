@@ -50,13 +50,20 @@ function CartProvider(props) {
   }
 
   function getTotalPriceInCart() {
-    return;
+    return 1000;
   }
 
   return (
     //3. Retornamos el Provider del context con un value personalizado
     <cartContext.Provider
-      value={{ cart, test, addToCart, getTotalItemsInCart }}
+      value={{
+        cart,
+        test,
+        addToCart,
+        getTotalItemsInCart,
+        getTotalPriceInCart,
+        removeItem,
+      }}
     >
       {/* 4. Renderizamos los children */}
       {props.children}

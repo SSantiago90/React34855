@@ -4,9 +4,9 @@ const NavItem = ({ to, children }) => {
   // text = {text: "Calzado"}
 
   return (
-    <li className="nav-item">
-      <Link className="nav-link" to={to}>
-        {children}
+    <li>
+      <Link className="nav-bar_link" to={to}>
+        <h3>{children}</h3>
       </Link>
     </li>
   );
