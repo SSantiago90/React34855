@@ -4,14 +4,12 @@ import Button from "../Button/Button";
 import "./card.css";
 
 function Item(props) {
-  const { title, price, imgurl, category, id, discount, stock } = props.item;
+  const { title, price, imgurl, category, id, discount } = props.item;
 
   return (
     <div className="item-card">
       <div className="item-card_header">
         <h2>{title}</h2>
-        {/* 3. rendering condicional con operador AND &&*/}
-        {stock <= 2 && <h4>Últimos disponibles!</h4>}
       </div>
       <div className="item-card_img">
         <img src={imgurl} alt={title} />
@@ -22,7 +20,7 @@ function Item(props) {
         <small>{category}</small>
       </div>
       <Link to={`/detalle/${id}`}>
-        <Button padding="22px" color="purple">
+        <Button padding="8px 32px" color="purple">
           Ver más
         </Button>
       </Link>

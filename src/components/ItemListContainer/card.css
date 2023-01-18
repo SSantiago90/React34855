@@ -41,6 +41,8 @@
 
 .item-card_detail{
   padding: 12px 8px;
+  
+  height: 105px;
 }
 
 .item-card:hover .item-card_favicon{

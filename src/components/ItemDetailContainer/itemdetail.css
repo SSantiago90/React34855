@@ -9,6 +9,9 @@
   object-fit: cover;
 }
 
+h3,h4{
+  margin: 12px auto;
+}
 .card-detail_main{
   
   text-align: center;

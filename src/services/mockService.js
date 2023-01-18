@@ -67,7 +67,7 @@ const obtenerProductos = () => {
     setTimeout(() => {
       /* reject("no hay items"); */
       resolve(database);
-    }, 2000);
+    }, 1000);
   });
 };
 
@@ -80,7 +80,7 @@ const getCity = (idURL) => {
     setTimeout(() => {
       if (reqItem) resolve(reqItem);
       else reject("No se encontró el producto");
-    }, 2000);
+    }, 1000);
   });
 };
 
