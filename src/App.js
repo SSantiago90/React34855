@@ -7,8 +7,11 @@ import HomePage from "./pages/HomePage";
 import PageNotFound from "./pages/PageNotFound";
 import { CartProvider } from "./storage/cartContext";
 import CartContainer from "./components/CartContainer/CartContainer";
+import app, { obtenerProductos } from "./services/firebase";
 
 function App() {
+  obtenerProductos();
+
   function logOutSession() {
     console.log("logout");
   }

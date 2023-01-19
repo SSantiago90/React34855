@@ -33,9 +33,7 @@ function CartProvider(props) {
     /*B: setCart([...cart, item]); */
   }
 
-  function removeItem(itemid) {
-    // splice + findIndex
-  }
+  function removeItem(itemid) {}
 
   function clear() {
     //

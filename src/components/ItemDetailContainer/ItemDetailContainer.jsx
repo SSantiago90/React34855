@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { getCity } from "../../services/mockService";
+import { getCity } from "../../services/firebase";
 import { cartContext } from "../../storage/cartContext";
 import ItemDetail from "./ItemDetail";
 

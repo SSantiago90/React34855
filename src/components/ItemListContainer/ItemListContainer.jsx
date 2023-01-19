@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import Item from "./Item";
 import Flex from "../Flex/Flex";
-import obtenerProductos, {
-  getCityByCategory,
-} from "../../services/mockService";
+import { getCityByCategory } from "../../services/firebase";
+import { obtenerProductos } from "../../services/firebase";
+
 import { useParams } from "react-router-dom";
 
 import "./alert.css";
@@ -26,7 +26,7 @@ function ItemListContainer() {
           setCities(respuesta);
           setAlertText({
             text: "Items Cargados Correctamente",
-            type: "danger",
+            type: "default",
           });
         })
         .catch((error) => {
