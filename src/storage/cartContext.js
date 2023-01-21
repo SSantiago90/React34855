@@ -1,18 +1,18 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useContext } from "react";
+import { useDeepCopy } from "../hooks/useDeepCopy";
 
 //1. Crear un context
 export const cartContext = createContext({ cart: [] });
 
 //2 Inicializamos el Provider
-function CartProvider(props) {
-  console.log("renderizamos cart provider");
+export function CartProvider(props) {
   const [cart, setCart] = useState([]);
+  let newCart = useDeepCopy(cart);
 
   const test = () => console.log("test");
 
   function addToCart(item) {
     let isInCart = cart.findIndex((itemInCart) => itemInCart.id === item.id);
-    let newCart = cart.map((item) => item);
 
     if (isInCart !== -1) {
       /* newCart[isInCart] */
@@ -69,4 +69,6 @@ function CartProvider(props) {
   );
 }
 
-export { CartProvider };
+export function useCartContext() {
+  return useContext(cartContext);
+}

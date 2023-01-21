@@ -20,12 +20,19 @@
   -webkit-animation: cssAnimation 3s forwards; 
   animation: cssAnimation 0s ease-in 3s forwards;
   -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
+  animation-fill-mode: forwards;  
+  background: #898989;
+  color: #303030;
 }
 
 .alert.alert_default{  
   background: #c0d6f4;
   color: #183d71;
+}
+
+.alert.alert_info{  
+  background: #c0f4d7;
+  color: #2b5a3b;
 }
 
 .alert.alert_danger{  

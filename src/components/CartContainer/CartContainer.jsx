@@ -1,12 +1,10 @@
-import React, { useContext } from "react";
-import { cartContext } from "../../storage/cartContext";
+import React from "react";
+import { useCartContext } from "../../storage/cartContext";
 import Button from "../Button/Button";
 import "./cart.css";
 
 function CartContainer() {
-  const { cart, removeItem, getTotalPriceInCart } = useContext(cartContext);
-
-  console.log(cart.length);
+  const { cart, removeItem, getTotalPriceInCart } = useCartContext();
 
   return (
     <>

@@ -65,4 +65,21 @@ export async function getCityByCategory(categoryUrl) {
   return cities;
 }
 
+export async function getCityByKeyowrd(keyword) {
+  const productsRef = collection(db, "products");
+
+  // Coincidencia 100%
+  const q = query(productsRef, where("title", "==", keyword));
+
+  const snapshot = await getDocs(q);
+
+  const cities = snapshot.docs.map((elem) => {
+    let city = elem.data();
+    city.id = elem.id;
+    return city;
+  });
+
+  return cities;
+}
+
 export default db;
