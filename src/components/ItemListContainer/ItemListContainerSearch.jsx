@@ -53,9 +53,6 @@ function ItemListContainerSearch() {
   }, [cities, searchKeyword]);
 
   useEffect(() => {
-    // <con Firebase
-
-    //con Firebase />
     if (!categoryid) {
       obtenerProductos()
         .then((respuesta) => {

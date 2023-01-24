@@ -48,7 +48,8 @@ export function CartProvider(props) {
   }
 
   function getTotalPriceInCart() {
-    return 1000;
+    let total = 1500;
+    return total;
   }
 
   return (

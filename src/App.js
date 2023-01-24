@@ -7,12 +7,8 @@ import HomePage from "./pages/HomePage";
 import PageNotFound from "./pages/PageNotFound";
 import { CartProvider } from "./storage/cartContext";
 import CartContainer from "./components/CartContainer/CartContainer";
-import { obtenerProductos } from "./services/firebase";
-import ItemListContainerSearch from "./components/ItemListContainer/ItemListContainerSearch";
 
 function App() {
-  obtenerProductos();
-
   function logOutSession() {
     console.log("logout");
   }
@@ -27,13 +23,15 @@ function App() {
         <CartProvider>
           <NavBar onLogin={logInSession} onLogout={logOutSession} />
           <Routes>
-            <Route path="/" element={<ItemListContainerSearch />} />
-            <Route
-              path="/category/:categoryid"
-              element={<ItemListContainerSearch />}
-            />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/category/:categoryid" element={<HomePage />} />
             <Route path="/detalle/:itemid" element={<ItemDetailContainer />} />
             <Route path="/cart" element={<CartContainer />} />
+
+            <Route
+              path="/thank-you/:orderid"
+              element={<h1>Gracias por tu compra</h1>}
+            />
 
             <Route path="*" element={<PageNotFound />} />
           </Routes>

@@ -9,12 +9,23 @@ function ItemDetailContainer() {
   const [isInCart, setIsInCart] = useState(false);
 
   let params = useParams();
-  const { addToCart } = useContext(cartContext);
+  const { cart, addToCart } = useContext(cartContext);
 
   function handleAddToCart(count) {
     setIsInCart(true);
     const cityAndCount = { ...city, count: count };
     addToCart(cityAndCount);
+  }
+
+  function checkStock() {
+    let itemInCart = cart.find((item) => item.id === city.id);
+
+    let stockUpdated = city.stock;
+
+    if (itemInCart) {
+      stockUpdated = city.stock - itemInCart.count;
+    }
+    return stockUpdated;
   }
 
   useEffect(() => {
@@ -33,6 +44,7 @@ function ItemDetailContainer() {
       imgurl={city.imgurl}
       category={city.category}
       price={city.price}
+      stockUpdated={checkStock()}
     />
   );
 }
