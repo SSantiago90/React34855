@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { createOrder } from "../../services/firebase";
+import { createOrder_WithStockControl } from "../../services/firebase";
 import { useCartContext } from "../../storage/cartContext";
 import Button from "../Button/Button";
 import "./cart.css";
 import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
 
 function CartContainer() {
@@ -50,9 +49,19 @@ function CartContainer() {
 
     //3. Rendering condicional
     async function sendOrder() {
-      let id = await createOrder(order);
-      setOrderId(id);
+      try {
+        let id = await createOrder_WithStockControl(order);
+        setOrderId(id);
+      } catch (error) {
+        Swal.fire({
+          title: "Ocurrió un error con tu compra",
+          text: error,
+          icon: "error",
+          confirmButtonText: "Volver",
+        });
+      }
     }
+
     sendOrder();
   }
 

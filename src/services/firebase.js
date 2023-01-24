@@ -9,8 +9,8 @@ import {
   where,
   orderBy,
   addDoc,
-  Firestore,
   writeBatch,
+  documentId,
 } from "firebase/firestore"; // SDK -> Soft Dev Kit
 
 const firebaseConfig = {
@@ -85,21 +85,52 @@ export async function getCityByKeyowrd(keyword) {
 
 export async function createOrder(order) {
   const orderRef = collection(db, "order");
-
-  /*  addDoc(orderRef, order).then((respuesta) => {
-    console.log(respuesta);
-    console.log(respuesta.id);
-  }); */
-
-  // 1- obtener de Firebase todos los productos del carrito
-  // 2- Controlar que ningun producto excede el stock
-  // 3- Update/actualizar todos los productos en Firebase
-  // 4- Creamos la orden
-
   let respuesta = await addDoc(orderRef, order);
   console.log(respuesta, respuesta.id);
 
   return respuesta.id;
+}
+
+export async function createOrder_WithStockControl(order) {
+  const orderRef = collection(db, "order");
+  const productsRef = collection(db, "products");
+  //1. Creamos un nuevo lote o "batch" de escritura ("writeBatch")
+  const batch = writeBatch(db);
+  //2. Actualizar cada item según la compra del usuario (stock - count)
+  //2-A hago un listado de los items a actualizar
+  const arrayIds = order.items.map((item) => item.id);
+  //2.B obtengo de Firestore la data de los productos a actualizar utilizando una query
+  const q = query(productsRef, where(documentId(), "in", arrayIds));
+  const querySnaphot = await getDocs(q);
+  const docsToUpdate = querySnaphot.docs;
+  let itemsSinStock = [];
+  //3. Por cada documento en la DB -> compruebo si hay stock suficiente para la compra
+  docsToUpdate.forEach((doc) => {
+    //3.A Obtengo el stock real y actual en la DB
+    let stock = doc.data().stock;
+    //3.B Encontramos el item "iterado" en el Cart
+    let itemInCart = order.items.find((item) => item.id === doc.id);
+    let countInCart = itemInCart.count;
+    //3.C Calculamos la cantidad resultante luego de hacer la compra
+    let newStock = stock - countInCart;
+    //4. Validamos -> no hay stock ?  generamos un error : sino, sumamos una acción de update al "batch"
+    if (newStock < 0) {
+      itemsSinStock.push(doc.id);
+    } else {
+      batch.update(doc.ref, { stock: newStock });
+    }
+  });
+  //7?. Generamos error si existieron productos sin stock suficiente
+  if (itemsSinStock.length >= 1)
+    throw new Error(
+      `Stock no disponible para el producto para los productos ${itemsSinStock}`
+    );
+  //5. Finalmente, hacemos un "commit" del batch y realizamos los cambios a los productos
+  await batch.commit();
+
+  //6. Generamos la orden de compra
+  let newOrder = await addDoc(orderRef, order);
+  return newOrder.id;
 }
 
 export async function exportArray() {
